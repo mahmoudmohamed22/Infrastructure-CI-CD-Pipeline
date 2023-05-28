@@ -16,7 +16,7 @@ spec:
       serviceAccountName: jenkins-admin
       containers:
         - name: jenkins
-          image: jenkins/jenkins:lts
+          image: hopa/jenkins_with_docker_kubectl
           ports:
             - name: httpport
               containerPort: 8080
