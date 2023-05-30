@@ -1,0 +1,5 @@
+---
+- name: install packages
+  hosts: aws_ec2
+  roles:
+    - jenkins-k8s
