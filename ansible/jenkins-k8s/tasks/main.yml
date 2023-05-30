@@ -1,0 +1,38 @@
+---
+# tasks file for jenkins-k8s
+- name: Apply Namespace YAML
+  kubernetes.core:
+        src: "~/Documents/Infrastructure-ITI-DevOps/Deploy Jenkins on EKS/NameSpace.yaml"
+        state: present
+
+- name: Apply ClusterRole YAML
+  kubernetes.core:
+        src: "~/Documents/Infrastructure-ITI-DevOps/Deploy Jenkins on EKS/ClusterRole.yaml"
+        state: present
+
+- name: Apply Service Account YAML
+  kubernetes.core:
+        src: " ~/Documents/Infrastructure-ITI-DevOps/Deploy Jenkins on EKS/ServiceAccount.yaml"
+        state: present
+
+- name: Apply PVC YAML
+  kubernetes.core:
+        src: " ~/Documents/Infrastructure-ITI-DevOps/Deploy Jenkins on EKS/PVC.yaml"
+        state: present   
+
+
+- name: Apply PV YAML
+  kubernetes.core:
+        src: " ~/Documents/Infrastructure-ITI-DevOps/Deploy Jenkins on EKS/PV.yaml"
+        state: present      
+
+- name: Apply deployment YAML
+  kubernetes.core:
+        src: ~/Documents/Infrastructure-ITI-DevOps/Deploy Jenkins on EKS/Deployment.yaml
+        state: present
+
+- name: Apply service YAML
+  kubernetes.core:
+        src: "~/Documents/Infrastructure-ITI-DevOps/Deploy Jenkins on EKS/Service-LoadBalancer.yaml"
+        state: present
+
