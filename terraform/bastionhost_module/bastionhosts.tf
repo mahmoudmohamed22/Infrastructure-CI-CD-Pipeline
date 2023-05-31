@@ -1,12 +1,3 @@
-
-# data "aws_secretsmanager_secret" "user_credentials" {
-#   arn = var.terraform_user_secret_arn
-
-# }
-
-# data "aws_secretsmanager_secret_version" "secret_version" {
-#   secret_id = data.aws_secretsmanager_secret.user_credentials.id
-# }
 resource "aws_instance" "bastionhost1" {
   ami                     = "ami-053b0d53c279acc90"
   instance_type           = "t2.micro"
@@ -48,11 +39,11 @@ resource "aws_instance" "bastionhost1" {
               connection {
                     type        = "ssh"
                     user        = "ubuntu"
-                    private_key = file("~/Documents/Infrastructure-CI-CD-P/terraform/tf_key.pem")
+                    private_key = file("~/Documents/Infrastructure-CI-CD-Pipeline/terraform/tf_key.pem")
                     host        = self.public_ip
                   }
 
-    source      = "~/Documents/Infrastructure-ITI-DevOps/Jenkins-k8s"
+    source      = "~/Documents/Infrastructure-CI-CD-Pipeline/Jenkins-k8s"
     destination = "/home/ubuntu/jenkin-k8s"
   }
 
