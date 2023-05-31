@@ -1,5 +1,5 @@
 # create elastic ip first then attach nat 
-resource "aws_eip" "lb" {
+resource "aws_eip" "lb1" {
   vpc      = true
 
    tags = {
@@ -9,8 +9,8 @@ resource "aws_eip" "lb" {
 
 
 resource "aws_nat_gateway" "NAT_GW" {
-  allocation_id = aws_eip.lb.id
-  subnet_id     = aws_subnet.public_sub2.id
+  allocation_id = aws_eip.lb1.id
+  subnet_id     = aws_subnet.public_sub1.id
 
   tags = {
     Name = "${var.COMPANY_NAME}_nat_GW"
@@ -20,3 +20,5 @@ resource "aws_nat_gateway" "NAT_GW" {
   # on the Internet Gateway for the VPC.
   depends_on = [aws_internet_gateway.igw]
 }
+
+

@@ -8,10 +8,6 @@ resource "aws_route_table_association" "tb-sub-b" {
   route_table_id = aws_route_table.public_route.id
 }
 
-# resource "aws_route_table_association" "tb-sub-c" {
-#   subnet_id      = aws_subnet.public_sub3.id
-#   route_table_id = aws_route_table.public_route.id
-# }
 
 # attached private table with private subent
 
@@ -24,7 +20,3 @@ resource "aws_route_table_association" "b" {
   route_table_id = aws_route_table.private_route.id
 }
 
-# resource "aws_route_table_association" "c" {
-#   subnet_id      = aws_subnet.private_sub3.id
-#   route_table_id = aws_route_table.private_route.id
-# }

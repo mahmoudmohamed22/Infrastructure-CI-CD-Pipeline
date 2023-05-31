@@ -6,7 +6,7 @@ resource "aws_subnet" "private_sub1" {
   tags = {
     Name = "${var.COMPANY_NAME}_private-subent-1"
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/demo"      = "owned"
+    
   }
 }
 
@@ -18,19 +18,7 @@ resource "aws_subnet" "private_sub2" {
   tags = {
     Name = "${var.COMPANY_NAME}_private-subent-2"
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster/demo"      = "owned"
+    
   }
 }
 
-
-# resource "aws_subnet" "private_sub3" {
-#   vpc_id     = aws_vpc.vpc_main.id
-#   cidr_block = var.PRIVATE_SUBNET_3_CIDR
-#   availability_zone =var.AZ_3
-#   map_public_ip_on_launch = false
-#   tags = {
-#     Name = "${var.COMPANY_NAME}_private-subent-3"
-#     "kubernetes.io/role/internal-elb" = "1"
-#     "kubernetes.io/cluster/demo"      = "owned"
-#   }
-# }
