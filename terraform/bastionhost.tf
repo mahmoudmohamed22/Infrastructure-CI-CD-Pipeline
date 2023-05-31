@@ -8,4 +8,5 @@ module my_bastionhost {
  eks_cluster_name=module.my_eks.aws_eks_cluster_name
  aws_secretsmanager_secret_version_secret_version_secretsmanager_vv=module.my_secrets_manager.aws_secretsmanager_secret_version_secret_version_secretsmanager_vv
 key_name = module.my_secrets_manager.key_name
+
 }
