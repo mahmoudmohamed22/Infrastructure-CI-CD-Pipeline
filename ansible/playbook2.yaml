@@ -1,0 +1,106 @@
+- name: Deploy Jenkins Master 
+  hosts: all
+  become: yes
+  vars:
+    yaml_files:
+      - ../Jenkins-k8s/NameSpace.yaml
+      - ../Jenkins-k8s/ClusterRole.yaml
+      - ../Jenkins-k8s/ServiceAccount.yaml
+      - ../Jenkins-k8s/ClusterRoleBinding.yaml
+      - ../Jenkins-k8s/PVC.yaml
+      - ../Jenkins-k8s/PV.yaml
+      - ../Jenkins-k8s/Deployment.yaml
+      - ../Jenkins-k8s/Service-LoadBalancer.yaml
+  tasks:
+      - name: Install kubectl using snap
+        shell: snap install kubectl --classic
+        args:
+         creates: /snap/bin/kubectl
+
+      - name: Update apt cache
+        apt:
+          update_cache: yes
+
+      - name: Install Python
+        apt:
+          name: python3
+          state: present
+ 
+      - name: Install unzip
+        apt:  name={{ item }} state=present update_cache=yes
+        with_items:
+          - unzip
+          - acl 
+          - pip 
+
+
+      - name: Install kubernetes Module dependencies
+        pip:
+         name:
+           - pyyaml
+           - kubernetes
+           - ansible
+
+
+
+      - name: Download aws zip
+        get_url:
+          url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+          dest: ./awscliv2
+
+
+      - name: Unzip the downloaded file
+        unarchive:
+          src: ./awscliv2
+          dest: .
+          remote_src: yes
+
+      - name: install aws
+        shell: sudo ./aws/install --update
+
+      - name: Create AWS credentials dir 
+        file:
+         path: ".aws"
+         state: directory
+       
+     
+      - name: Copy AWS credentials to EC2 instance
+        copy:
+         src:   ~/.aws/credentials
+         dest:  /home/ubuntu/.aws/
+         owner: ubuntu
+         group: ubuntu
+         mode: '0600' 
+ 
+      - name: Update kubeconfig
+        shell: aws eks update-kubeconfig --region us-east-1 --name eks
+        args:
+         executable: /bin/bash
+ 
+      - name: Set KUBECONFIG environment variable
+        shell: export KUBECONFIG=$HOME/.kube/config
+        args:
+         executable: /bin/bash
+     
+      - name: Create K8S dir 
+        file:
+              path: ./K8S
+              state: directory
+
+      - name: Copy YAML files to target server
+        copy:
+          src: "{{ item }}"
+          dest: ./jenkin-k8s/
+        with_items: "{{ yaml_files }}"
+        
+
+      - name: Apply YAML files using kubectl
+        shell: kubectl apply -f ./jenkin-k8s/{{ item }}
+        with_items: "{{ yaml_files }}"
+        
+      - name: Get Kubernetes Services
+        command: kubectl get services
+        register: services_output
+
+      - debug:
+          var: services_output.stdout_lines
