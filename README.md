@@ -51,7 +51,9 @@ add Git Credentials in jenkins
  need  add docker credentials in jenkins 
 <img src="./images screenshots/15.png" alt="">
  failed need to run docker deomon in host 
+ 
  <img src="./images screenshots/16.png" alt="">
+ 
 ### bastion host as slave
 run ansible to configure bastion host to as slave 
 <img src="./images screenshots/17.png" alt="">
@@ -63,26 +65,36 @@ edit jenkins file to run in bastionhost as slave
 <img src="./images screenshots/21.png" alt="">error 
 ///var/run/docker.sock
 <img src="./images screenshots/22.png" alt="">
+
 solve this and i will edit my ansible code to handle this 
 
-<img src="./images screenshots/23.png" alt="">
-
+<img src="./images screenshots/24.png" alt="">
 ### this finish pipeline for ci cd for deploy go app
 
-<img src="./images screenshots/24.png" alt="">
-
+<img src="./images screenshots/25.png" alt="">
 ### Go App is running in k8s using jenkins 
 
-<img src="./images screenshots/25.png" alt="">
+<img src="./images screenshots/27.png" alt="">
 
 ### Go App from browser
 
-<img src="./images screenshots/26.png" alt="">
+
+<img src="./images screenshots/28.png" alt="">
+
+### when I tried also jenkins pod as slave 
+#### steps 
+- install docker in private worker node 
+- run docker 
+- change permission for ///var/run/docker.sock
+- run jenkins without agent to run pipeline in the same master pod 
+
+### result jenkins pipeline 
+
 
 ### webhooks to trigger pipeline automatically 
 
-<img src="./images screenshots/27.png" alt="">
-<img src="./images screenshots/28.png" alt="">
+<img src="./images screenshots/29.png" alt="">
+<img src="./images screenshots/30.png" alt="">
 
 
 
