@@ -8,7 +8,7 @@
 #   secret_id = data.aws_secretsmanager_secret.user_credentials.id
 # }
 resource "aws_instance" "bastionhost1" {
-  ami                     = "ami-06e46074ae430fba6"
+  ami                     = "ami-053b0d53c279acc90"
   instance_type           = "t2.micro"
   subnet_id               = var.bastionhost_subnet_id
   vpc_security_group_ids  = [var.security_group_id]
@@ -17,7 +17,7 @@ resource "aws_instance" "bastionhost1" {
   user_data = <<-EOF
               #!/bin/bash
               #copy key from secretmanager to machine
-              echo $(aws secretsmanager get-secret-value --secret-id my-private-key --query SecretString --output text) > /home/ec2-user/${var.key_name}.pem 
+              echo $(aws secretsmanager get-secret-value --secret-id my-private-key --query SecretString --output text) > /home/ubuntu/${var.key_name}.pem 
               chown ec2-user:ec2-user ${var.key_name}.pem
               chmod 400 /home/ec2-user/${var.key_name}.pem
              
@@ -35,22 +35,25 @@ resource "aws_instance" "bastionhost1" {
               unzip awscliv2.zip
               sudo ./aws/install
 
-
-              # sudo mkdir /home/ec2-user/.aws/
-              # sudo touch /home/ec2-user/.aws/credentials
+              #sudo mkdir ~/jenkin-k8s
+              # sudo mkdir /home/ubuntu/.aws/
+              # sudo touch /home/ubuntu/.aws/credentials
               
-              aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
+              #aws eks update-kubeconfig --region us-east-1 --name ${var.eks_cluster_name}
               EOF
    
+
+
   provisioner "file" {
               connection {
                     type        = "ssh"
                     user        = "ubuntu"
-                    private_key = file("~/Documents/Infrastructure-ITI-DevOps/terraform/tf_key.pem")
+                    private_key = file("~/Documents/Infrastructure-CI-CD-P/terraform/tf_key.pem")
                     host        = self.public_ip
                   }
-    source      = "~/Documents/Infrastructure-ITI-DevOps/Deploy Jenkins on EKS"
-    destination = "~/jenkin-k8s"
+
+    source      = "~/Documents/Infrastructure-ITI-DevOps/Jenkins-k8s"
+    destination = "/home/ubuntu/jenkin-k8s"
   }
 
 
