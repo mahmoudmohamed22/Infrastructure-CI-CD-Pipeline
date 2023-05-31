@@ -66,6 +66,7 @@ solve this and i will edit my ansible code to handle this
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/b7c9cd17-dc28-411e-b4d5-de7636dbf733)
 
 ### webhooks to trigger pipeline automatically 
+![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/a13c62ed-7fc9-479c-be7c-e876a130a97a)
 
 
 
