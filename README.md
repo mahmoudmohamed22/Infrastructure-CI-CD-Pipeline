@@ -11,7 +11,10 @@ Infrastructure-ITI-DevOps
 
 
 ## Deploy Go App using Jenkins in EKS
+
 Deployments yaml for jenkins allows jenkins pod as jenkins master and slave but I do  bastion host as slave also i tried jenkins pod as slave  and bastion host as slave
+![jenkins](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/2fd36ca5-cd19-419e-91df-71705e4b0bfa)
+
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/868e6dc0-f67e-4674-afec-b77f5816bcd3)
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/67e104fe-b60b-4efa-a9b3-c11519e0c3d3)
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/e8595592-5b3c-4e97-b3e9-465dd930d9c0)
@@ -29,7 +32,7 @@ when ented occur error
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/6de81cdc-3577-4a48-8ebc-b9129d5ee87e)
 solved with enter in secuirty section in Manage Jenkins
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/eb450848-9729-4c37-91bf-7813479c15e9)
-i create pipeline pipeline script from SCM to read jenkinsfile but my repo is private it needs Git Credentials add In Jenkins
+i create pipeline  script from SCM to read jenkinsfile but my repo is private it needs Git Credentials add In Jenkins
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/1ba3fb23-d47c-4e52-9b7d-78fbf8036775)
 add Git Credentials in jenkins 
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/007c1cf0-9d82-4ec3-b58a-cac7bb7743c8)
@@ -40,6 +43,7 @@ add Git Credentials in jenkins
  ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/5d5ab47e-4b09-406e-a657-90db11eb37c8)
  failed need to run docker deomon in host 
  ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/d3d38f65-e0dd-4f52-9696-5c2904dc1098)
+### bastion host as slave
 run ansible to configure bastion host to as slave 
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/ea4d7261-12e6-405d-9073-4bc5685d077f)
 add bastion host as slave for jenkins 
@@ -61,6 +65,7 @@ solve this and i will edit my ansible code to handle this
 ### Go App from browser
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/b7c9cd17-dc28-411e-b4d5-de7636dbf733)
 
+### webhooks to trigger pipeline automatically 
 
 
 
