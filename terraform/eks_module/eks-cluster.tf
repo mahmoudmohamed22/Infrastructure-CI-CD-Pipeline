@@ -4,6 +4,7 @@ resource "aws_eks_cluster" "eks_cluster" {
  
   vpc_config {
     subnet_ids = [var.private_sub_1, var.private_sub_2]
+    security_group_ids = [aws_security_group.eks-sg.id]
     endpoint_public_access = false
     endpoint_private_access= true
   }
