@@ -29,7 +29,28 @@ variable "instance_types" {
     type=string
   }
 
+   variable "VPC_CIDR" {
+    type=string
+  }
 
+   variable "vpc_id" {
+    type=string
+  }
+
+   variable "bastionhost-SG-id" {
+    type=string
+  }
+
+
+variable "key" {
+    type=string
+  }
+
+
+
+variable "public_sub_cidr" {
+    type=string
+  }
 
 
 
