@@ -1,5 +1,11 @@
 # Infrastructure-CI-CD-Pipeline
-Infrastructure-ITI-DevOps
+### Tools Used
+- Docker
+- Kubernetes
+- Terraform
+- Ansible
+- Jenkins
+- Amazon Web Service (AWS)
 
 ## Infrastructure Overview For Project
 
@@ -68,6 +74,7 @@ solve this and i will edit my ansible code to handle this
 ### webhooks to trigger pipeline automatically 
 ![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/a13c62ed-7fc9-479c-be7c-e876a130a97a)
 
+![image](https://github.com/mahmoudmohamed22/Infrastructure-CI-CD-Pipeline/assets/47304558/5d0f7ea5-190c-434f-b4b2-451dc26d1e48)
 
 
 
