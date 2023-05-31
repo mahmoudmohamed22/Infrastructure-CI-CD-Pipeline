@@ -26,15 +26,18 @@ resource "aws_eks_node_group" "private_nodes" {
     role = "general"
   }
 
+   remote_access {
+    ec2_ssh_key = var.key
+  }
   # taint {
   #   key    = "team"
   #   value  = "devops"
   #   effect = "NO_SCHEDULE"
   # }
 
-  # launch_template {
-  #   name    = aws_launch_template.eks-with-disks.name
-  #   version = aws_launch_template.eks-with-disks.latest_version
+  #  launch_template {
+  #   name = aws_launch_template.tm_worker_node.name_prefix
+  #   version = "$Latest"
   # }
 
   depends_on = [
@@ -44,17 +47,15 @@ resource "aws_eks_node_group" "private_nodes" {
   ]
 }
 
-# resource "aws_launch_template" "eks-with-disks" {
-#   name = "eks-with-disks"
+# resource "aws_launch_template" "tm_worker_node" {
+#   name_prefix   = "workernode-template"
+#   image_id      = "ami-053b0d53c279acc90"
+#   user_data = <<-EOF
+#       #!/bin/bash
 
-#   key_name = "local-provisioner"
-
-#   block_device_mappings {
-#     device_name = "/dev/xvdb"
-
-#     ebs {
-#       volume_size = 50
-#       volume_type = "gp2"
-#     }
-#   }
+#       apt update
+#       apt install -y docker.io
+#       #systemctl enable --now docker
+#       sudo chmod 777 /var/run/docker.sock | base64
+#   EOF
 # }
